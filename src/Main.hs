@@ -1,6 +1,8 @@
 -- | Main entry point to the application.
 module Main where
 
+import UnitTests
+
 lst = [2,3,5,5]
 
 -- 1. Find the last element of a list.
@@ -41,8 +43,7 @@ main :: IO ()
 main = do
     putStrLn "Welcome to FP Haskell Center!"
     putStrLn "Have a good day!"
-
     print total
-
+    runTests
 
 
