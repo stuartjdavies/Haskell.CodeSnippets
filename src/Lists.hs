@@ -1,7 +1,4 @@
--- | Main entry point to the application.
-module Main where
-
-lst = [2,3,5,5]
+module Lists where
 
 -- 1. Find the last element of a list.
 myLast :: [a] -> a
@@ -31,18 +28,10 @@ myButLast (_:xs) = myLast xs
 
 -- 10. Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 
-
-
-
-total = sum (map (3*) lst)
-
--- | The main entry point.
-main :: IO ()
-main = do
-    putStrLn "Welcome to FP Haskell Center!"
-    putStrLn "Have a good day!"
-
-    print total
-
+testQ1 :: () -> Bool
+testQ1 () = 
+        (myLast [1] == 1) &&
+        (myLast [1,2,3,4] == 1)
+        
 
 
