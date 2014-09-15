@@ -10,6 +10,13 @@ myLast (_:xs) = myLast xs
 elementAt :: [a] -> Int -> a
 elementAt list i    = list !! (i-1)
 
+elementAt' :: [a] -> Int -> a
+elementAt' (x:_) 1  = x
+elementAt' [] _     = error "Index out of bounds2"
+elementAt' (_:xs) k
+                | k < 1           = error "Index out of bounds"
+                | otherwise       = elementAt' xs (k - 1)
+
 -- 3. Find the last but one element of a list.
 myButLast :: [a] -> a
 myButLast [] = error "No second last"
