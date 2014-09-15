@@ -13,8 +13,27 @@ myButLast [x,_] = x
 myButLast (_:xs) = myLast xs
 
 -- 3. Find the number of elements of a list.
+myLength :: [a] -> Int
+myLength [] = 0
+myLength (_:xs) = 1 + myLength xs
+
+-- (using a accumulator)
+myLength2 :: [a] -> Int
+myLength2 list = myLength_acc list 0
+	   where
+                myLength_acc [] n = n
+		myLength_acc (_:xs) n = myLength_acc xs (n + 1)
 
 -- 4. Reverse a list.
+reverse :: [a] -> [a]
+reverse [] = []
+reverse (x:xs) = reverse xs ++ [x]
+
+reverse2 :: [a] -> [a]
+reverse2 list = reverse' list []
+                where
+                     reverse' [] reversed     = reversed
+                     reverse' (x:xs) reversed = reverse' xs (x:reversed)
 
 -- 5. Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x)
 
