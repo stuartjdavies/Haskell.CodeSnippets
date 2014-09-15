@@ -10,14 +10,6 @@ myLast (_:xs) = myLast xs
 elementAt :: [a] -> Int -> a
 elementAt list i    = list !! (i-1)
 
-elementAt' :: [a] -> Int -> a
-elementAt' (x:_) 1  = x
-elementAt' [] _     = error "Index out of bounds2"
-elementAt' (_:xs) k
-  | k < 1           = error "Index out of bounds"
-  | otherwise       = elementAt' xs (k - 1)
-
-
 -- 3. Find the last but one element of a list.
 myButLast :: [a] -> a
 myButLast [] = error "No second last"
@@ -29,23 +21,10 @@ myLength :: [a] -> Int
 myLength [] = 0
 myLength (_:xs) = 1 + myLength xs
 
--- (using a accumulator)
-myLength2 :: [a] -> Int
-myLength2 list = myLength_acc list 0
-	   where
-                myLength_acc [] n = n
-		myLength_acc (_:xs) n = myLength_acc xs (n + 1)
-
 -- 5. Reverse a list.
 reverseLst :: [a] -> [a]
 reverseLst [] = []
 reverseLst (x:xs) = reverseLst xs ++ [x]
-
-reverseLst' :: [a] -> [a]
-reverseLst' list = aux list []
-                       where
-                           aux [] reversed     = reversed
-                           aux (x:xs) reversed = aux xs (x:reversed)
 
 -- 5. Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x)
 
