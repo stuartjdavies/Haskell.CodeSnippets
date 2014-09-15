@@ -6,13 +6,25 @@ myLast [] = error "No end to empty list"
 myLast [x] = x
 myLast (_:xs) = myLast xs
 
--- 2. Find the last but one element of a list.
+-- 2. Element At
+elementAt :: [a] -> Int -> a
+elementAt list i    = list !! (i-1)
+
+elementAt' :: [a] -> Int -> a
+elementAt' (x:_) 1  = x
+elementAt' [] _     = error "Index out of bounds"
+elementAt' (_:xs) k
+  | k < 1           = error "Index out of bounds"
+  | otherwise       = elementAt' xs (k - 1)
+
+
+-- 3. Find the last but one element of a list.
 myButLast :: [a] -> a
 myButLast [] = error "No second last"
 myButLast [x,_] = x
 myButLast (_:xs) = myLast xs
 
--- 3. Find the number of elements of a list.
+-- 4. Find the number of elements of a list.
 myLength :: [a] -> Int
 myLength [] = 0
 myLength (_:xs) = 1 + myLength xs
@@ -24,20 +36,25 @@ myLength2 list = myLength_acc list 0
                 myLength_acc [] n = n
 		myLength_acc (_:xs) n = myLength_acc xs (n + 1)
 
--- 4. Reverse a list.
-reverse :: [a] -> [a]
-reverse [] = []
-reverse (x:xs) = reverse xs ++ [x]
+-- 5. Reverse a list.
+reverseLst :: [a] -> [a]
+reverseLst [] = []
+reverseLst (x:xs) = reverseLst xs ++ [x]
 
-reverse2 :: [a] -> [a]
-reverse2 list = reverse' list []
-                where
-                     reverse' [] reversed     = reversed
-                     reverse' (x:xs) reversed = reverse' xs (x:reversed)
+reverseLst' :: [a] -> [a]
+reverseLst' list = aux list []
+                       where
+                           aux [] reversed     = reversed
+                           aux (x:xs) reversed = aux xs (x:reversed)
 
 -- 5. Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x)
 
 -- 6. Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x).
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = xs == (reverse xs)
+isPalindrome' []  = True
+isPalindrome' [_] = True
+isPalindrome' xs  = (head xs) == (last xs) && (isPalindrome' $ init $ tail xs)
 
 -- 7. Flatten a nested list structure.
 
